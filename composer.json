@@ -2,12 +2,19 @@
     "name": "venturecraft/revisionable",
     "license": "MIT",
     "description": "Keep a revision history for your models without thinking, created as a package for use with Laravel 4",
-    "keywords": ["model", "laravel", "ardent", "revision", "history"],
+    "keywords": ["model", "laravel", "revision", "history"],
     "homepage": "http://github.com/venturecraft/revisionable",
     "authors": [
         {
             "name": "Chris Duell",
             "email": "me@chrisduell.com"
+            "role": "Original Developer"
+        },
+        {
+            "name": "Michael Parker",
+            "email": "michael@codebro.org",
+            "homepage": "http://www.codebro.org",
+            "role": "Contributing Developer"
         }
     ],
     "support": {
