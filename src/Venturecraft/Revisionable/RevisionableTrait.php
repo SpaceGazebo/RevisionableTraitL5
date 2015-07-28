@@ -118,7 +118,7 @@ trait RevisionableTrait
             // we can only safely compare basic items,
             // so for now we drop any object based items, like DateTime
             foreach ($this->updatedData as $key => $val) {
-                if (is_object($val){
+                if (is_object($val)){
                     if (method_exists($val,'toRevisionString')){
                         $this->updatedData[$key] = $val->toRevisionString();
                     }
