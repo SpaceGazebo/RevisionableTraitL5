@@ -167,8 +167,9 @@ trait RevisionableTrait
      *
      * @return void
      */
-    public function postSave()
+    public function postSave($options = array())
     {
+        $result = [];
         if (isset($this->historyLimit) && $this->revisionHistory()->count() >= $this->historyLimit) {
             $LimitReached = true;
         } else {
@@ -205,10 +206,18 @@ trait RevisionableTrait
                 }
                 
                 $revision = new Revision;
-                \DB::table($revision->getTable())->insert($revisions);
+
+                $result['revisions'] = $revisions;
+
+                if (array_get($options,'insertNow',true))
+                {
+                    \DB::table($revision->getTable())->insert($revisions);
+                }
 
             }
         }
+
+        return $result;
     }
 
     /**
@@ -225,7 +234,7 @@ trait RevisionableTrait
                 'old_value' => null,
                 'new_value' => $this->deleted_at,
             ])];
-            
+
             $revision = new Revision;
             \DB::table($revision->getTable())->insert($revisions);
         }
@@ -233,7 +242,7 @@ trait RevisionableTrait
 
     /**
      * allow some models to modify the data before saving
-     * 
+     *
      */
     public function makeRevision($arr)
     {
